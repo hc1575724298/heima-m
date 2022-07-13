@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-13 08:59:21
  * @LastEditors: sj
- * @LastEditTime: 2022-07-13 10:52:08
+ * @LastEditTime: 2022-07-13 14:35:09
  */
 module.exports = {
   root: true,
@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/comment-directive': 'off'
+    'vue/comment-directive': 'off',
+    'vue/multi-word-component-names': 'off'
   }
 }
