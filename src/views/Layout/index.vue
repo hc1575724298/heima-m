@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-15 16:46:22
  * @LastEditors: sj
- * @LastEditTime: 2022-07-15 17:50:05
+ * @LastEditTime: 2022-07-16 08:58:48
 -->
 <template>
 <div>
@@ -33,7 +33,7 @@
     <template #icon >
       <span class="toutiao toutiao-wode"></span>
     </template>
-          <span>我的</span>
+          <span>{{!!$store.state.user.token ? '我的' : '未登录'}}</span>
   </van-tabbar-item>
 </van-tabbar>
 </div>
