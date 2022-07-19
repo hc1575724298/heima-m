@@ -5,14 +5,16 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-15 16:47:07
  * @LastEditors: sj
- * @LastEditTime: 2022-07-19 12:16:18
+ * @LastEditTime: 2022-07-19 14:47:28
 -->
 <template>
   <div>
     <!-- 头部导航 -->
     <van-nav-bar class="navbar">
       <template #title>
-        <van-button round><van-icon name="search" />搜索</van-button>
+        <van-button
+        @click="$router.push('/search')"
+        round><van-icon name="search" />搜索</van-button>
       </template>
     </van-nav-bar>
 

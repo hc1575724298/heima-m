@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-13 08:59:21
  * @LastEditors: sj
- * @LastEditTime: 2022-07-15 17:50:47
+ * @LastEditTime: 2022-07-19 14:48:02
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -39,6 +39,10 @@ const routes = [
         component: () => import('@/views/My')
       }
     ]
+  },
+  {
+    path: '/search',
+    component: () => import('@/views/Search')
   }
 ]
 

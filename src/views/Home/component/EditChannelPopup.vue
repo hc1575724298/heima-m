@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-18 16:02:47
  * @LastEditors: sj
- * @LastEditTime: 2022-07-19 10:59:47
+ * @LastEditTime: 2022-07-19 14:42:30
 -->
 <template>
   <van-popup
@@ -58,7 +58,7 @@ import { getAllChannels } from '@/api/channel'
 export default {
   data () {
     return {
-      isShow: true,
+      isShow: false,
       allChannels: [],
       isEdit: false
     }
