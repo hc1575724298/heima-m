@@ -5,24 +5,25 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-18 09:45:57
  * @LastEditors: sj
- * @LastEditTime: 2022-07-18 15:29:06
+ * @LastEditTime: 2022-07-21 17:53:42
 -->
 <template>
   <div>
     <!-- 渲染无图片 -->
-    <van-cell v-if="articleInfo.cover.type===0" :title="articleInfo.title" :label="aeticleDesc"></van-cell>
+    <van-cell v-if="articleInfo.cover.type===0" :title="articleInfo.title" :label="aeticleDesc"  @click="toMore(articleInfo.art_id)"></van-cell>
 
     <!-- 渲染一张图片 -->
-    <van-cell v-if="articleInfo.cover.type===1" :title="articleInfo.title" :label="aeticleDesc">
+    <van-cell v-if="articleInfo.cover.type===1" :title="articleInfo.title" :label="aeticleDesc" @click="toMore(articleInfo.art_id)">
       <van-image
       width="3rem"
       height="2rem"
       :src="articleInfo.cover.images[0]"
+
       ></van-image>
     </van-cell>
 
     <!-- 渲染三张图片 -->
-    <van-cell v-if="articleInfo.cover.type===3" :title="articleInfo.title" :label="aeticleDesc">
+    <van-cell v-if="articleInfo.cover.type===3" :title="articleInfo.title" :label="aeticleDesc"  @click="toMore(articleInfo.art_id)">
       <template #label>
         <div>
         <van-image
@@ -54,6 +55,16 @@ export default {
     aeticleDesc () {
       const time = dayjs(this.articleInfo.pubdate).fromNow()
       return `${this.articleInfo.aut_name} 评论:${this.articleInfo.comm_count}  ${time}`
+    }
+  },
+  methods: {
+    toMore (artId) {
+      this.$router.push({
+        name: 'moremsg',
+        params: {
+          artId
+        }
+      })
     }
   }
 }

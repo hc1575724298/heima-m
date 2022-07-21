@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-19 14:44:38
  * @LastEditors: sj
- * @LastEditTime: 2022-07-19 15:59:07
+ * @LastEditTime: 2022-07-21 12:11:55
 -->
 <template>
   <div>
@@ -21,7 +21,7 @@
 </form>
 
 <!-- 组件 -->
-<component :is="comName" :keyWords="keyWords"></component>
+<component :is="comName" :keyWords="keyWords" @changeKeyWords="changeKeyWords" @toresult="toresult"></component>
 
   </div>
 </template>
@@ -34,18 +34,32 @@ export default {
   data () {
     return {
       keyWords: '',
-      isShowSearchResults: false
+      isShowSearchResults: false,
+      historyList: []
     }
   },
   methods: {
     onSearch () {
       // 按下回车/索搜时 触发
       this.isShowSearchResults = true
+
+      this.historyList.unshift(this.keyWords)
+      this.historyList = [...new Set(this.historyList)]
+      // console.log(this.historyList)
+      localStorage.setItem('historyList', JSON.stringify(this.historyList))
     },
     isFocused () {
       // 搜索框聚焦时，
       // 有数据，显示搜索建议   无数据，显示搜索历史
       this.isShowSearchResults = false
+    },
+    changeKeyWords (val) {
+      this.keyWords = val
+      this.onSearch()
+    },
+    toresult (val) {
+      this.keyWords = val
+      this.onSearch()
     }
   },
   computed: {

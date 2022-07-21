@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-13 08:59:21
  * @LastEditors: sj
- * @LastEditTime: 2022-07-18 15:22:22
+ * @LastEditTime: 2022-07-21 20:54:40
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -21,6 +21,7 @@ import 'vant/lib/index.css'
 // 引入flexible
 import 'amfe-flexible/index.min.js'
 
+import '@/assets/news.css'
 Vue.config.productionTip = false
 
 Vue.use(Vant)

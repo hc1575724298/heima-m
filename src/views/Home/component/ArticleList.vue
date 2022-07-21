@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-16 18:04:44
  * @LastEditors: sj
- * @LastEditTime: 2022-07-18 14:49:13
+ * @LastEditTime: 2022-07-21 14:47:17
 -->
 <template>
   <div>
@@ -26,6 +26,7 @@
           v-for="item in articles"
           :key="item.art_id"
           :articleInfo="item"
+
         ></ArticleItem>
       </van-list>
     </van-pull-refresh>

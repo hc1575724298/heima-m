@@ -5,13 +5,13 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-19 15:14:58
  * @LastEditors: sj
- * @LastEditTime: 2022-07-19 17:37:37
+ * @LastEditTime: 2022-07-21 11:59:31
 -->
 <template>
   <div>
     <van-cell icon="search" v-for="(item,index) in activeKeywords" :key="index">
       <template #title>
-        <span v-html="item"></span>
+        <span v-html="item" @click="toResultList(index)"></span>
       </template>
     </van-cell>
   </div>
@@ -57,10 +57,13 @@ export default {
         const { data } = await getSearchSuggestions(this.keyWords)
         this.suggestions = data.data.options.filter(Boolean)
         if (this.suggestions.length === 0) return this.$toast.fail('暂无搜索建议')
-        console.log(data.data.options)
+        // console.log(data.data.options)
       } catch (error) {
         console.log(error)
       }
+    },
+    toResultList (index) {
+      this.$emit('changeKeyWords', this.suggestions[index])
     }
   }
 }
