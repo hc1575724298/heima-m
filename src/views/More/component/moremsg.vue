@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-21 18:02:14
  * @LastEditors: sj
- * @LastEditTime: 2022-07-22 00:23:56
+ * @LastEditTime: 2022-07-22 08:33:29
 -->
 <!--
  * @Descripttion:
@@ -119,7 +119,7 @@
       <van-icon name="star" v-if="moreMsg.is_collected" @click="delCollections"/>
       <van-icon name="star-o" v-else @click="getCollections"/>
       <van-icon name="good-job" :badge="moreMsg.like_count" v-if="isLike" @click="dontLike"/>
-      <van-icon name="good-job-o" :badge="moreMsg.like_count" v-else/>
+      <van-icon name="good-job-o" :badge="moreMsg.like_count" v-else @click="getLike"/>
       <van-icon name="share" />
     </div>
 
@@ -253,6 +253,7 @@ export default {
     async getLike () {
       try {
         await getLike(this.moreMsg.art_id)
+        this.isLike = true
       } catch (error) {
         this.$toast.fail('点赞失败')
       }
@@ -261,6 +262,7 @@ export default {
     async dontLike () {
       try {
         await dontLike(this.moreMsg.art_id)
+        this.isLike = false
       } catch (error) {
         this.$toast.fail('取消点赞失败')
       }

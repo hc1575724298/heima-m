@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-19 14:44:38
  * @LastEditors: sj
- * @LastEditTime: 2022-07-21 12:11:55
+ * @LastEditTime: 2022-07-22 09:17:46
 -->
 <template>
   <div>
@@ -30,12 +30,13 @@
 import SearchSuggestion from './components/SearchSuggestion.vue'
 import SearchResult from './components/SearchResult.vue'
 import SearchHistory from './components/SearchHistory.vue'
+import { getSearchHistory, setSearchHistory } from '@/api'
 export default {
   data () {
     return {
       keyWords: '',
       isShowSearchResults: false,
-      historyList: []
+      historyList: getSearchHistory() || []
     }
   },
   methods: {
@@ -46,7 +47,7 @@ export default {
       this.historyList.unshift(this.keyWords)
       this.historyList = [...new Set(this.historyList)]
       // console.log(this.historyList)
-      localStorage.setItem('historyList', JSON.stringify(this.historyList))
+      setSearchHistory(this.historyList)
     },
     isFocused () {
       // 搜索框聚焦时，

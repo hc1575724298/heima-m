@@ -9,9 +9,9 @@
 -->
 <template>
   <div>
-    <van-cell icon="search" v-for="(item,index) in activeKeywords" :key="index">
+    <van-cell icon="search" v-for="(item,index) in activeKeywords" :key="index" @click="toResultList(index)">
       <template #title>
-        <span v-html="item" @click="toResultList(index)"></span>
+        <span v-html="item" ></span>
       </template>
     </van-cell>
   </div>

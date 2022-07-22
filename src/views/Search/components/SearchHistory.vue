@@ -5,12 +5,12 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-19 15:13:29
  * @LastEditors: sj
- * @LastEditTime: 2022-07-21 12:09:36
+ * @LastEditTime: 2022-07-22 09:14:22
 -->
 <template>
   <div>
     <!--索搜历史  -->
-    <van-cell title="索搜历史">
+    <van-cell title="搜索历史">
   <!-- 使用 right-icon 插槽来自定义右侧图标 -->
   <template #right-icon v-if="isDel">
     <van-icon name="delete-o"  @click="isDel = false"/>
@@ -33,10 +33,11 @@
 </template>
 
 <script>
+import { getSearchHistory, setSearchHistory } from '@/api'
 export default {
   data () {
     return {
-      historyList: JSON.parse(localStorage.getItem('historyList')),
+      historyList: getSearchHistory(),
       isDel: true
     }
   },
@@ -47,7 +48,7 @@ export default {
     },
     thisDel (index) {
       this.historyList.splice(index, 1)
-      localStorage.setItem('historyList', JSON.stringify(this.historyList))
+      setSearchHistory(this.historyList)
     },
     toResult (val, index) {
       if (this.isDel) {
