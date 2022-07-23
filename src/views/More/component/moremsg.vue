@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-21 18:02:14
  * @LastEditors: sj
- * @LastEditTime: 2022-07-23 00:36:33
+ * @LastEditTime: 2022-07-23 09:21:09
 -->
 <template>
   <div>
@@ -245,11 +245,14 @@ export default {
 
         // 图片预览
         this.$nextTick(() => {
-          this.imgList = document.querySelector('content')?.querySelectorAll('img')
+          this.imgList = document.querySelector('.content').querySelectorAll('img')
           const imgSrc = []
           this.imgList?.forEach((ele, index) => {
             imgSrc.push(ele.src)
-            ele.addEventListener('click', () => ImagePreview({ images: imgSrc, startPosition: index, closeable: true }))
+            ele.onclick = () => {
+              console.log(111)
+              ImagePreview({ images: imgSrc, startPosition: index, closeable: true })
+            }
           })
         })
       } catch (error) {
