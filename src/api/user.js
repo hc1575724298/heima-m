@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-13 17:11:23
  * @LastEditors: sj
- * @LastEditTime: 2022-07-21 21:16:22
+ * @LastEditTime: 2022-07-23 18:12:55
  */
 import request from '@/utils/request'
 
@@ -61,4 +61,25 @@ export const toFollowing = (target) => request({
 export const notFollowing = (target) => request({
   url: `/v1_0/user/followings/${target}`,
   method: 'DELETE'
+})
+
+// 获取用户个人资料 /v1_0/user/profile
+
+export const getProfile = () => request({
+  url: '/v1_0/user/profile'
+})
+
+// 编辑用户个人资料  /v1_0/user/profile
+
+export const editProfile = (data) => request({
+  url: '/v1_0/user/profile',
+  method: 'PATCH',
+  data
+})
+
+// 编辑用户照片资料  /v1_0/user/photo
+export const editPhoto = (data) => request({
+  url: '/v1_0/user/photo',
+  method: 'PATCH',
+  data
 })

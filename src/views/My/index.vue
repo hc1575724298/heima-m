@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-15 16:48:15
  * @LastEditors: sj
- * @LastEditTime: 2022-07-16 16:19:02
+ * @LastEditTime: 2022-07-23 09:46:45
 -->
 <template>
   <div class="my">
@@ -32,7 +32,7 @@
           </van-col>
           <van-col span="11">
             <van-row type="flex" align="center" justify="end" class="code-row">
-              <van-button size="mini" round class="code-btn"
+              <van-button size="mini" round class="code-btn" @click="$router.push('/user')"
                 >编辑资料</van-button
               >
             </van-row>

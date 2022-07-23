@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-13 08:59:21
  * @LastEditors: sj
- * @LastEditTime: 2022-07-21 18:05:43
+ * @LastEditTime: 2022-07-23 09:35:52
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -54,6 +54,10 @@ const routes = [
         name: 'moremsg'
       }
     ]
+  },
+  {
+    path: '/user',
+    component: () => import('@/views/User')
   }
 ]
 
