@@ -8,57 +8,58 @@
  * @LastEditTime: 2022-07-22 20:14:52
 -->
 <template>
-    <van-cell
-        class="suggestion"
-      >
-        <template #title>
-          <van-image round width="35px" height="35px" :src="thisComment.aut_photo" />
-        </template>
+  <van-cell class="suggestion">
+    <template #title>
+      <van-image
+        round
+        width="35px"
+        height="35px"
+        :src="thisComment.aut_photo"
+      />
+    </template>
 
-        <template #default>
-          <div class="top">
-            <div class="left">{{thisComment.aut_name }}</div>
-            <div class="right">
-              <!-- <div @click="thisComment.is_liking = !thisComment.is_liking"> -->
-              <div @click="clickGoodJob">
-                <van-icon name="good-job-o" v-if="!thisComment.is_liking" />
-                <van-icon
-                  name="good-job"
-                  style="color: red"
-                  v-else
-                  class="good-job"
-                />
-              </div>
-              <div>
-                <span v-if="thisComment.like_count === 0">赞</span>
-                <span v-else>{{thisComment.like_count }}</span>
-              </div>
-            </div>
+    <template #default>
+      <div class="top">
+        <div class="left">{{ thisComment.aut_name }}</div>
+        <div class="right">
+          <div @click="clickGoodJob">
+            <van-icon name="good-job-o" v-if="!thisComment.is_liking" />
+            <van-icon
+              name="good-job"
+              style="color: red"
+              v-else
+              class="good-job"
+            />
           </div>
-          <div class="center">
-            {{ thisComment.content }}
+          <div>
+            <span v-if="thisComment.like_count === 0">赞</span>
+            <span v-else>{{ thisComment.like_count }}</span>
           </div>
-          <div class="bottom">
-            <span>{{ aeticleDesc }}</span>
-            <van-button type="default" round @click="$emit('isShowCommt')"
-              >回复<span>{{ thisComment.reply_count }}</span>
-            </van-button>
-          </div>
-        </template>
-   </van-cell>
+        </div>
+      </div>
+      <div class="center">
+        {{ thisComment.content }}
+      </div>
+      <div class="bottom">
+        <span>{{ aeticleDesc }}</span>
+        <van-button type="default" round @click="$emit('isShowCommt')"
+          >回复<span>{{ thisComment.reply_count }}</span>
+        </van-button>
+      </div>
+    </template>
+  </van-cell>
 </template>
 
 <script>
 import dayjs from '@/utils/dayjs'
-import {
-  delLiking,
-  getLiking
-} from '@/api'
+import { delLiking, getLiking } from '@/api'
 export default {
   props: {
     thisComment: {
       type: Object,
-      default: () => { return {} }
+      default: () => {
+        return {}
+      }
     }
   },
   computed: {
@@ -94,7 +95,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .suggestion {
+.suggestion {
   .van-cell__value {
     flex: 6;
 

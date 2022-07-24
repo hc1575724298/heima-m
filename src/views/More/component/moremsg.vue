@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-21 18:02:14
  * @LastEditors: sj
- * @LastEditTime: 2022-07-24 11:03:12
+ * @LastEditTime: 2022-07-24 15:50:39
 -->
 <template>
   <div>
@@ -22,7 +22,6 @@
       <h1 class="article-title">{{ moreMsg.title }}</h1>
 
       <!-- 文章作者信息 -->
-
       <van-cell class="userInfo">
         <!-- 左侧 -->
         <template #title>
@@ -68,7 +67,7 @@
 
       <div class="end"></div>
 
-      <!-- 评论列表 -->
+      <!-- 文章评论列表 -->
       <van-list
         class="commentList"
         v-model="loading"
@@ -117,7 +116,7 @@
         v-else
         @click="getLike"
       />
-      <van-icon name="share" />
+      <van-icon name="share" @click="showShare=true"/>
     </div>
 
     <!-- 写评论弹出层 -->
@@ -158,7 +157,7 @@
 
       <oneComments
         :thisComment="thisComment"
-        @isShowCommt="showComment = true"
+        @isShowCommt="postBtn()"
         @changeGoodJob="onChangeGoodJob(thisComment)"
       ></oneComments>
 
@@ -188,6 +187,14 @@
         >
       </div>
     </van-popup>
+
+    <!--  分享弹出层 -->
+    <van-share-sheet
+  v-model="showShare"
+  title="立即分享给好友"
+  :options="options"
+  @select="onSelect"
+/>
   </div>
 </template>
 
@@ -226,7 +233,15 @@ export default {
       end_id: '',
       last_id: '',
       allComm: '', // 总评论数
-      imgList: []
+      imgList: [],
+      showShare: false,
+      options: [
+        { name: '微信', icon: 'wechat' },
+        { name: '微博', icon: 'weibo' },
+        { name: '复制链接', icon: 'link' },
+        { name: '分享海报', icon: 'poster' },
+        { name: '二维码', icon: 'qrcode' }
+      ]
     }
   },
   created () {
@@ -278,12 +293,8 @@ export default {
       }
       this.loading = false
     },
-    // 点击评论回复
-    async callBack (item) {
-      this.showComment = true
-      this.thisComment = item
-
-      // 获取评论的评论
+    // 获取评论的评论
+    async getThisCommt (item) {
       try {
         const {
           data: { data }
@@ -293,6 +304,23 @@ export default {
       } catch (error) {
         this.$toast('回复失败')
       }
+    },
+    // 点击文章评论回复
+    callBack (item) {
+      this.showComment = true
+      this.thisComment = item
+
+      this.getThisCommt(item)
+      // 获取评论的评论
+      // try {
+      //   const {
+      //     data: { data }
+      //   } = await getComments('c', item.com_id)
+      //   console.log(data)
+      //   this.thisCommentList = data.results
+      // } catch (error) {
+      //   this.$toast('回复失败')
+      // }
     },
     // 关注用户
     async toFollowing (id) {
@@ -380,8 +408,10 @@ export default {
         }
         if (this.choosePull === 2) {
           // 对评论评论
-          // console.log(this.thisComment)
+          console.log(this.thisComment)
+          console.log(this.thisComment.com_id)
           console.log(2222)
+          console.log(this.moreMsg.art_id)
           const res1 = await pullComments(
             this.thisComment.com_id,
             this.message,
@@ -390,7 +420,9 @@ export default {
           console.log(res1)
 
           this.thisCommentList.unshift(res1.data.data.new_obj)
-          this.thisComment.reply_count++
+          // this.thisComment.reply_count++
+
+          // this.getThisCommt(this.thisComment)
         }
 
         this.show = false
@@ -419,6 +451,11 @@ export default {
         val.is_liking = true
         val.like_count++
       }
+    },
+    // 分享面板
+    onSelect (option) {
+      this.$toast(option.name)
+      this.showShare = false
     }
   },
   watch: {

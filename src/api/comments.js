@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-21 19:30:54
  * @LastEditors: sj
- * @LastEditTime: 2022-07-22 17:36:22
+ * @LastEditTime: 2022-07-24 15:47:54
  */
 import request from '@/utils/request'
 
@@ -34,15 +34,18 @@ export const getComments = (type, source, offset) => request({
  * @param {string} artId  文章id
  * @returns
  */
-export const pullComments = (target, content, artId) => request({
-  url: '/v1_0/comments',
-  method: 'POST',
-  data: {
-    target,
-    content,
-    artId
-  }
-})
+export const pullComments = (target, content, artId) => {
+  console.log(target, content, artId)
+  return request({
+    url: '/v1_0/comments',
+    method: 'POST',
+    data: {
+      target,
+      content,
+      artId
+    }
+  })
+}
 
 // 对评论或评论回复点赞
 /**
