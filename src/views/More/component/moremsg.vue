@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-21 18:02:14
  * @LastEditors: sj
- * @LastEditTime: 2022-07-24 15:50:39
+ * @LastEditTime: 2022-07-24 17:16:47
 -->
 <template>
   <div>
@@ -311,16 +311,6 @@ export default {
       this.thisComment = item
 
       this.getThisCommt(item)
-      // 获取评论的评论
-      // try {
-      //   const {
-      //     data: { data }
-      //   } = await getComments('c', item.com_id)
-      //   console.log(data)
-      //   this.thisCommentList = data.results
-      // } catch (error) {
-      //   this.$toast('回复失败')
-      // }
     },
     // 关注用户
     async toFollowing (id) {
@@ -408,10 +398,7 @@ export default {
         }
         if (this.choosePull === 2) {
           // 对评论评论
-          console.log(this.thisComment)
-          console.log(this.thisComment.com_id)
-          console.log(2222)
-          console.log(this.moreMsg.art_id)
+
           const res1 = await pullComments(
             this.thisComment.com_id,
             this.message,
@@ -420,7 +407,7 @@ export default {
           console.log(res1)
 
           this.thisCommentList.unshift(res1.data.data.new_obj)
-          // this.thisComment.reply_count++
+          this.thisComment.reply_count++
 
           // this.getThisCommt(this.thisComment)
         }

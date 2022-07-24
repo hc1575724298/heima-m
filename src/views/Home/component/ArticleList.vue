@@ -5,10 +5,10 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-16 18:04:44
  * @LastEditors: sj
- * @LastEditTime: 2022-07-21 14:47:17
+ * @LastEditTime: 2022-07-24 23:32:04
 -->
 <template>
-  <div>
+  <div  class="article-list">
     <van-pull-refresh
     success-text="刷新成功!"
     v-model="refreshLoading"
@@ -108,4 +108,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped lang="less">
+// .article-list {
+//   position: fixed;
+//   top: 180px;
+//   bottom: 100px;
+//   overflow-y: auto;
+//   right: 0;
+//   left: 0;
+// }
+</style>

@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-19 15:14:58
  * @LastEditors: sj
- * @LastEditTime: 2022-07-21 11:59:31
+ * @LastEditTime: 2022-07-24 21:01:02
 -->
 <template>
   <div>
@@ -48,7 +48,6 @@ export default {
       handler () {
         this.getSearchSuggestions()
       }
-
     }
   },
   methods: {

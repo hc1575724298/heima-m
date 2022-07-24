@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-13 08:59:21
  * @LastEditors: sj
- * @LastEditTime: 2022-07-21 17:51:35
+ * @LastEditTime: 2022-07-24 17:30:20
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -18,8 +18,6 @@ export default new Vuex.Store({
     number: 0,
     user: getToken() || {}
   },
-  getters: {
-  },
   // 修改变量
   mutations: {
     setNumber (state) {
@@ -29,9 +27,5 @@ export default new Vuex.Store({
       store.user = payload
       setToken(payload)
     }
-  },
-  actions: {
-  },
-  modules: {
   }
 })

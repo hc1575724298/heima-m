@@ -21,7 +21,9 @@
 </form>
 
 <!-- 组件 -->
-<component :is="comName" :keyWords="keyWords" @changeKeyWords="changeKeyWords" @toresult="toresult"></component>
+<component
+:is="comName"
+:keyWords="keyWords" @changeKeyWords="changeKeyWords" @toresult="toresult"></component>
 
   </div>
 </template>

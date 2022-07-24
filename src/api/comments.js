@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-21 19:30:54
  * @LastEditors: sj
- * @LastEditTime: 2022-07-24 15:47:54
+ * @LastEditTime: 2022-07-24 16:20:36
  */
 import request from '@/utils/request'
 
@@ -42,7 +42,7 @@ export const pullComments = (target, content, artId) => {
     data: {
       target,
       content,
-      artId
+      art_id: artId
     }
   })
 }

@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-23 09:28:16
  * @LastEditors: sj
- * @LastEditTime: 2022-07-24 14:36:53
+ * @LastEditTime: 2022-07-24 23:00:16
 -->
 <template>
   <div>
@@ -18,7 +18,7 @@
 
 <!-- 上传头像 -->
 <input type="file" hidden ref="file" >
-<!-- @click="onChangePhoto" -->
+
 <van-cell title="头像" is-link value="内容"  @click="$refs.file.click()">
   <template #default>
     <van-image
@@ -116,10 +116,12 @@ export default {
       const file = e.target.files[0]
 
       // 法一， URL.createObjectURL--->会存在内存泄露  转成blob 二进制格式
+      // 1.1
       // const binaryData = []
       // binaryData.push(file)
       // this.img = window.URL.createObjectURL(new Blob(binaryData))
 
+      // 1.2
       // this.img = window.URL.createObjectURL(file)
 
       // 法二   转成base64 格式  FileReader 文件阅读器
