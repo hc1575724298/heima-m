@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-21 18:02:14
  * @LastEditors: sj
- * @LastEditTime: 2022-07-23 09:21:09
+ * @LastEditTime: 2022-07-24 11:03:12
 -->
 <template>
   <div>
@@ -413,13 +413,8 @@ export default {
     onChangeGoodJob (val) {
       if (val.is_liking) {
         val.is_liking = false
-        if (val.like_count) {
-          val.like_count--
-        } else {
-          val.like_count = 0
-        }
-        // ********
-        // val.like_count = val.like_count ? val.like_count-- : 0
+
+        val.like_count ? val.like_count-- : val.like_count = 0
       } else {
         val.is_liking = true
         val.like_count++

@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-23 16:25:43
  * @LastEditors: sj
- * @LastEditTime: 2022-07-23 18:33:40
+ * @LastEditTime: 2022-07-24 11:41:02
 -->
 <template>
  <div class="photo">
@@ -24,7 +24,6 @@ import Cropper from 'cropperjs'
 import { editPhoto } from '@/api'
 export default {
   name: 'ChangePhoto',
-  components: {},
   props: {
     img: {
       type: [String, Object],

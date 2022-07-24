@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-23 09:28:16
  * @LastEditors: sj
- * @LastEditTime: 2022-07-23 18:28:40
+ * @LastEditTime: 2022-07-24 12:12:18
 -->
 <template>
   <div>
@@ -17,8 +17,8 @@
 />
 
 <!-- 上传头像 -->
-<input type="file" hidden ref="file" @click="onChangePhoto">
-
+<input type="file" hidden ref="file" >
+<!-- @click="onChangePhoto" -->
 <van-cell title="头像" is-link value="内容"  @click="$refs.file.click()">
   <template #default>
     <van-image
@@ -29,7 +29,7 @@
 />
   </template>
 </van-cell>
-<van-cell title="昵称" is-link :value="profile.name" @change="toChangName"/>
+<van-cell title="昵称" is-link :value="profile.name" @click="toChangName"/>
 <van-cell title="性别" is-link :value="profile.gender ? '女' : '男'" @click="showGender=true"/>
 <van-cell title="生日" is-link :value="profile.birthday" @click="toChangeBirthday"/>
 
@@ -80,7 +80,9 @@
 <van-popup v-model="showPhoto" position="bottom" :style="{ height: '100%' }">
   <ChangePhoto
   v-if="showPhoto"
-  :img ="img" @close="showPhoto=false" @update-photo="profile.photo=$event"></ChangePhoto>
+  :img ="img"
+  @close="showPhoto=false"
+  @update-photo="profile.photo=$event"></ChangePhoto>
 </van-popup>
   </div>
 </template>
@@ -101,12 +103,40 @@ export default {
       showBirthday: false,
       columns: ['男', '女'],
       showGender: false,
-      img: null,
+      img: '',
       showPhoto: false
     }
   },
   created () {
     this.getProfile()
+  },
+  mounted () {
+    this.$refs.file.addEventListener('change', (e) => {
+      // e.target  触发的元素
+      const file = e.target.files[0]
+
+      // 法一， URL.createObjectURL--->会存在内存泄露  转成blob 二进制格式
+      // const binaryData = []
+      // binaryData.push(file)
+      // this.img = window.URL.createObjectURL(new Blob(binaryData))
+
+      // this.img = window.URL.createObjectURL(file)
+
+      // 法二   转成base64 格式  FileReader 文件阅读器
+      const fr = new FileReader()
+      fr.readAsDataURL(file)
+      fr.onload = (e) => { // onload 异步操作
+        // console.log(e)
+        this.img = e.target.result
+        this.showPhoto = true
+      }
+
+      // this.showPhoto = true
+
+      // 如果选择同一个文件不会触发change事件
+      // 解决：每次使用完毕， 把它的value 清空
+      this.$refs.file.value = ''
+    })
   },
   methods: {
     async getProfile () {
@@ -161,26 +191,26 @@ export default {
       this.editProfile({ gender: index })
       this.profile.gender = value
       this.showGender = false
-    },
-    onChangePhoto () {
-      // 获取文件对象
-      const file = this.$refs.file.files[0]
-
-      // console.log(this.$refs.file.files)
-      // console.log(file)
-      // 基于文件对象获取 blob 数据
-      const binaryData = []
-      binaryData.push(file)
-      this.img = window.URL.createObjectURL(new Blob(binaryData))
-      // this.img = window.URL.createObjectURL(file)
-      console.log(this.img)
-
-      this.showPhoto = true
-
-      // 如果选择同一个文件不会触发change事件
-      // 解决：每次使用完毕， 把它的value 清空
-      this.$refs.file.value = ''
     }
+    // onChangePhoto () {
+    //   // 获取文件对象
+    //   const file = this.$refs.file.files[0]
+
+    //   // console.log(this.$refs.file.files)
+    //   // console.log(file)
+    //   // 基于文件对象获取 blob 数据
+    //   const binaryData = []
+    //   binaryData.push(file)
+    //   this.img = window.URL.createObjectURL(new Blob(binaryData))
+    //   // this.img = window.URL.createObjectURL(file)
+    //   console.log(this.img)
+
+    //   this.showPhoto = true
+
+    //   // 如果选择同一个文件不会触发change事件
+    //   // 解决：每次使用完毕， 把它的value 清空
+    //   this.$refs.file.value = ''
+    // }
   },
   components: {
     ChangePhoto
