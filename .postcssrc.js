@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-13 11:22:34
  * @LastEditors: sj
- * @LastEditTime: 2022-07-24 11:24:34
+ * @LastEditTime: 2022-07-26 09:58:22
  */
 module.exports = {
   plugins: {
@@ -21,7 +21,8 @@ module.exports = {
         return (/vant/gi.test(module.file) ? 37.5 : 75)
       },
       //适配的属性
-      propList: ['*']
+      propList: ['*'],
+      exclude: 'github-markdown'
     }
   }
 }

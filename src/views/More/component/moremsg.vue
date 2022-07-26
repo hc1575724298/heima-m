@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-21 18:02:14
  * @LastEditors: sj
- * @LastEditTime: 2022-07-24 17:16:47
+ * @LastEditTime: 2022-07-26 10:04:56
 -->
 <template>
   <div>
@@ -128,7 +128,7 @@
     >
       <van-field
         class="write-field"
-        v-model="message"
+        v-model.trim="message"
         rows="2"
         autosize
         type="textarea"
@@ -395,6 +395,7 @@ export default {
           const res = await pullComments(this.moreMsg.art_id, this.message)
           console.log(res.data.data)
           this.commentList.unshift(res.data.data.new_obj)
+          this.allComm++
         }
         if (this.choosePull === 2) {
           // 对评论评论
@@ -470,7 +471,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-
+ @import 'github-markdown-css/github-markdown-light.css';
 .rotate {
   transform: rotate(180deg);
   transition: all 1s;
