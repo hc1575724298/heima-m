@@ -5,7 +5,7 @@
  * @email: 1373842098@qq.com
  * @Date: 2022-07-23 09:28:16
  * @LastEditors: sj
- * @LastEditTime: 2022-07-24 23:00:16
+ * @LastEditTime: 2022-07-27 09:42:43
 -->
 <template>
   <div>
@@ -70,6 +70,7 @@
 <van-picker
   title="更新性别"
   show-toolbar
+  :default-index="profile.gender"
   :columns="columns"
   @confirm="saveGender"
   @cancel="showGender=false"
@@ -189,9 +190,9 @@ export default {
       this.showBirthday = false
     },
     saveGender (value, index) {
-      console.log(index)
+      console.log(value, index)
       this.editProfile({ gender: index })
-      this.profile.gender = value
+      this.profile.gender = index
       this.showGender = false
     }
     // onChangePhoto () {
